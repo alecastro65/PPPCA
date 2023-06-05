@@ -84,7 +84,8 @@ Departamento:```
 ```var_pib_porc```: Porcentaje de variación del PIB departamental 2018-19.
 """
 
-dataset = pd.read_excel('/content/drive/My Drive/datasets/ecv_colombia.xlsx')
+#dataset = pd.read_excel('/content/drive/My Drive/datasets/ecv_colombia.xlsx')
+dataset = pd.read_excel('1.data/ecv_colombia.xlsx')
 
 dataset.info()
 
