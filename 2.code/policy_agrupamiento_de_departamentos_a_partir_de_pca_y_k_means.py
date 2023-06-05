@@ -32,60 +32,45 @@ from sklearn.decomposition import PCA
 import plotly.express as px
 from sklearn.metrics import silhouette_score        
 from sklearn.cluster import KMeans
-
 from sklearn.preprocessing import StandardScaler
-
 import plotly.graph_objs as pgo
+import os
+from pyhere import here
 
-"""# Adquisición y exploración de los Datos
+print("hola")
+print(here())
+
+"""
+Adquisición y exploración de los Datos
 
 Las columnas 2-13 son tomadas del ‘Anexo de metadatos por departamentos’ de la Encuesta nacional de calidad de vida (ECV) 2019. 
-
-
 *   “(...)Estas investigaciones cuantifican y caracterizan las condiciones de vida de los colombianos incluyendo variables relacionadas con la vivienda (tenencia, acceso a servicios públicos) , las personas (salud, educación, seguridad social) y los hogares (jefatura del hogar, hijos menores de edad, género). ”
-
-
 La columna 14 se tomó del estudio de Pobreza Multidimensional en Colombia 2019 y 2018, y la columna 15 , del Informe de Cuentas Nacionales Departamentales 2019.
-
-**lista de variables:**
-
-
-
-
-```
+"""
+"""
+#**lista de variables:**
 Departamento:```
  Nombre del departamento
-
 ```hog_acued:``` Número de hogares con acceso a acueducto
-
 ```hog_alcan:``` Número de hogares con acceso a alcantarillado
-
 ```hog_elect:``` Número de hogares con acceso a energía electrica
-
 ```afi_seg_soc:``` Población afiliada al Sistema general de Seg. Social en el régimen contributivo.
-
 ```asist_educacion```: Porcentaje de personas mayores de 6 años que asisten al sistema educativo.
-
 ```acc_internet```: Porcentaje de hogares con acceso a internet.
-
 ```jef_hogar_mujer```: Hogares con hijos menores de 18 años, con jefe de hogar mujer, sin conyuge.
-
 ```viv_propia```: Hogares con vivienda propia totalmente pagada
-
-
 ```porc_pens```: Porcentaje de población mayor de 60 años que cuenta con una pensión.
-
 ```elim_exc:``` Porcentaje de hogares que realizan Eliminación de excretas hacia la red de alcantarillado.
-
 ```perc_pob:``` Hogares en los que el jefe se considera pobre.
-
 ```ipm:``` Índice de pobreza multimodal (2019)
-
 ```var_pib_porc```: Porcentaje de variación del PIB departamental 2018-19.
 """
 
 #dataset = pd.read_excel('/content/drive/My Drive/datasets/ecv_colombia.xlsx')
-dataset = pd.read_excel('1.data/ecv_colombia.xlsx')
+dataset_path = here("1.data\ecv_colombia.xlsx")
+print(dataset_path)
+dataset = pd.read_excel(dataset_path)
+
 
 dataset.info()
 
@@ -305,10 +290,10 @@ fig8.update_layout(
         font_size=16,
     )
 )
+fig8
 
 """#Conclusiones
 
 La teoría económica tradicional muestra debilidades en los análisis multivariados, en especial cuando se aplican sobre indicadores con altos niveles de correlación, como lo son los indicadores socioeconómicos (por ejemplo, un acceso deficiente al agua potable estará relacionado con una mala calidad alimenticia). En este sentido, el análisis por componentes principales se muestra especialmente útil para lidiar con series de datos con muchas dimensiones.
-
 Con un mejor entendimiento sobre como los indicadores económicos utilizados varían entre los 32 departamentos, nos es posible identificar que cluster de departamentos demanda mayor asistencia gubernamental. Por ejemplo, si quisieramos identificar en que lugar es necesaria una política de inversión en infraestructura de comunicaciones, o acueducto y alcantarillado, nos centraríamos en el cluster 0. Este analisis es muy útil para identificar en que departamentos se deben priorizar las distintas políticas públicas de desarrollo socio-económico, e incluso, es posible utilizar el mísmo método sobre municipios y entidades territoriales de menor tamaño para lograr mayor especificidad en la identificación y corrección de deficiencias de orden socio-económico.
 """
